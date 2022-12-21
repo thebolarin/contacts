@@ -13,7 +13,7 @@ import axios from 'axios';
 import { ContactI } from '../../store/type';
 
 function DeleteContact(props:any) {
-  const [contactToDelete, setContactToDelete] = useState<any | ContactI>({}); //useState({});
+  const [contactToDelete, setContactToDelete] = useState<any | ContactI>({}); 
   const cancelRef = React.useRef(null);
   const [deleting, setDeleting] = useState(false);
   const toast = useToast();

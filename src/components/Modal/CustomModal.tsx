@@ -9,7 +9,6 @@ import {
   ModalFooter,
   useMediaQuery,
 } from '@chakra-ui/react';
-// import { Props } from '../../store/type';
 
 function CustomModal(props: any) {
   const { isOpen, onClose, title, children, footerChildren } = props

@@ -1,6 +1,3 @@
-// import { render, screen } from '@testing-library/react';
-// import '../../../matchMedia'; 
-
 import { fireEvent, screen, waitFor } from '@testing-library/dom';
 import ReactDOM from 'react-dom';
 import Home from '.';
@@ -15,16 +12,4 @@ describe('<Home />', () => {
     expect(screen.getByRole('button')).toBeInTheDocument();
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
-
-  // it('performs search correctly', () => {
-  //   fireEvent.change(screen.getByRole('textbox'), {
-  //     target: { value: 'JavaScript' },
-  //   });
-
-  //   waitFor(() =>
-  //     expect(
-  //       screen.getByText(/Searches for JavaScript/)
-  //     ).toBeInTheDocument()
-  //   );
-  // })
 });

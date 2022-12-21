@@ -38,14 +38,12 @@ function Home() {
   const [selectedContactId, setSelectedContactId] = useState<null | string>(null);
   const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
   const toast = useToast();
-  // const [isSearching, setIsSearching] = useState(false);
 
   const [isBigScreen] = useMediaQuery('(min-width: 768px)');
 
   const getContacts = useCallback(async (searchTerm: string) => {
     const baseURL = process.env.REACT_APP_BASE_URL;
     try {
-      // setIsSearching(false);
       setIsLoadingContacts(true);
       let url = `${baseURL}/contact`;
       if (searchTerm && searchTerm !== '')  url = `${baseURL}/contact?searchTerm=${searchTerm}`;

@@ -6,7 +6,7 @@ import CustomForm from '../../components/Form/CustomForm';
 import { ContactI } from '../../store/type';
 
 function EditContact(props:any) {
-  const [contact, setContact] = useState<any | ContactI>({}); //useState({});
+  const [contact, setContact] = useState<any | ContactI>({});
   const [editing, setEditing] = useState(false);
   const toast = useToast();
 

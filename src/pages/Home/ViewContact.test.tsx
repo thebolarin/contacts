@@ -1,6 +1,3 @@
-// import { render, screen } from '@testing-library/react';
-// import '../../../matchMedia'; 
-
 import { fireEvent, screen } from '@testing-library/dom';
 import ReactDOM from 'react-dom';
 import ViewContact from '.';
