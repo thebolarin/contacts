@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Props } from '../../store/type';
 
 function CustomForm(props: any) {
   const { id, contact: selectedContact, onSubmit } = props
@@ -11,13 +12,10 @@ function CustomForm(props: any) {
   });
 
   useEffect(() => {
-    if (selectedContact) {
-      setContact(selectedContact);
-    }
+    if (selectedContact) setContact(selectedContact);
   }, [selectedContact]);
 
-  const handleSubmit = (e: any) => {
-    console.log(contact)
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(contact);
   };

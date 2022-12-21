@@ -1,6 +1,8 @@
 This project was bootstrapped with
 [Create React App](https://github.com/facebook/create-react-app).
 
+App is deployed at [https://simple-contacts-ui.netlify.app](https://simple-contacts-ui.netlify.app)
+
 ## Available Scripts
 
 In the project directory, you can run:

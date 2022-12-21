@@ -7,6 +7,9 @@ import {
   HStack,
   Spacer,
   Button,
+  Input,
+  Flex,
+  Center
 } from '@chakra-ui/react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
@@ -16,18 +19,20 @@ import DeleteContact from './DeleteContact';
 import CreateContact from './CreateContact';
 import { ContactI } from '../../store/type';
 
-function MobileHome(props:any) {
+function MobileHome(props: any) {
+  const { handleOnChange, searchTerm, handleKeyDown } = props;
   const [contacts, setContacts] = useState([]);
-  const [contact, setContact] = useState<null | ContactI>(null);//useState(null);
-  const [contactToDelete, setContactToDelete] = useState<null | ContactI>(null);//useState(null);
-  const [selectedContactId, setSelectedContactId] = useState<null | string>(null);//useState(null);
-  const [showCreateForm, setShowCreateForm] = useState<boolean>(false);//useState(false);
+  const [contact, setContact] = useState<null | ContactI>(null);
+  const [contactToDelete, setContactToDelete] = useState<null | ContactI>(null);
+  const [selectedContactId, setSelectedContactId] = useState<null | string>(null);
+  const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 
   useEffect(() => {
     if (props.contacts) {
       setContacts(props.contacts);
     }
   }, [props]);
+
   return (
     <Box>
       {contacts.length > 0 && (
@@ -35,8 +40,19 @@ function MobileHome(props:any) {
           {contacts.length} Contact(s)
         </Text>
       )}
+
       <VStack spacing={4} pt={5} pb={5} align="stretch">
-        {contacts.map((contact:ContactI) => (
+        <Center>
+        <Input width={{ base: '70%' }}
+            onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
+            placeholder='Search Contacts'
+            size='md' variant='filled'
+          />
+</Center>
+      </VStack>
+
+      <VStack spacing={4} pt={5} pb={5} align="stretch">-
+        {contacts.map((contact: ContactI) => (
           <Box
             shadow="md"
             w="100%"
@@ -47,11 +63,7 @@ function MobileHome(props:any) {
             key={contact._id}
           >
             <HStack>
-              <Box
-                onClick={() => {
-                  setSelectedContactId(contact._id);
-                }}
-              >
+              <Box onClick={() => setSelectedContactId(contact._id)}>
                 <Text fontSize="sm">{`${contact.firstName}  ${contact.lastName}`}</Text>
                 <Text fontSize="sm">{contact.email}</Text>
                 <Text fontSize="sm">{contact.phoneNumber}</Text>
@@ -92,7 +104,7 @@ function MobileHome(props:any) {
 
       <EditContact
         isOpen={contact}
-        onClose={() => setContact(null) }
+        onClose={() => setContact(null)}
         fullContacts={contacts}
         contact={contact}
         setContact={setContact}
