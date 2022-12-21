@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { Props } from '../../store/type';
+// import { Props } from '../../store/type';
 
 function CustomForm(props: any) {
   const { id, contact: selectedContact, onSubmit } = props

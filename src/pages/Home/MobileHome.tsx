@@ -8,7 +8,6 @@ import {
   Spacer,
   Button,
   Input,
-  Flex,
   Center
 } from '@chakra-ui/react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
@@ -35,22 +34,20 @@ function MobileHome(props: any) {
 
   return (
     <Box>
+      <VStack spacing={4} pt={5} pb={5} align="stretch">
+        <Center>
+          <Input width={{ base: '70%' }}
+            onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
+            placeholder='Search Contacts'
+            size='md' variant='filled'
+          />
+        </Center>
+      </VStack>
       {contacts.length > 0 && (
         <Text fontSize="xl" color="gray.500">
           {contacts.length} Contact(s)
         </Text>
       )}
-
-      <VStack spacing={4} pt={5} pb={5} align="stretch">
-        <Center>
-        <Input width={{ base: '70%' }}
-            onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
-            placeholder='Search Contacts'
-            size='md' variant='filled'
-          />
-</Center>
-      </VStack>
-
       <VStack spacing={4} pt={5} pb={5} align="stretch">-
         {contacts.map((contact: ContactI) => (
           <Box

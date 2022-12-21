@@ -9,7 +9,7 @@ import {
   Grid,
   theme,
 } from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
+// import { ColorModeSwitcher } from "./ColorModeSwitcher"
 // import { Logo } from "./Logo"
 import Home from "./pages/Home"
 
