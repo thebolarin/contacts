@@ -63,7 +63,7 @@ function MobileHome(props: any) {
 
               {showClearIcon &&
                 <InputRightElement
-                  onClick={() => clearSearchTerm()}
+                  onClick={() => clearSearchTerm('')}
                   children={
                     <MdHighlightOff
                       color='green.500'
