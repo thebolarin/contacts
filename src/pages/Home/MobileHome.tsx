@@ -9,10 +9,15 @@ import {
   Button,
   Input,
   Center,
-  Skeleton
+  Skeleton,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement
 } from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons'
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
+import { MdHighlightOff } from "react-icons/md";
 import ViewAContact from './ViewContact';
 import EditContact from './EditContact';
 import DeleteContact from './DeleteContact';
@@ -20,7 +25,7 @@ import CreateContact from './CreateContact';
 import { ContactI } from '../../store/type';
 
 function MobileHome(props: any) {
-  const { handleOnChange, searchTerm, handleKeyDown, isLoaded } = props;
+  const { handleOnChange, searchTerm, handleKeyDown, isLoaded, showClearIcon, clearSearchTerm } = props;
   const [contacts, setContacts] = useState([]);
   const [contact, setContact] = useState<null | ContactI>(null);
   const [contactToDelete, setContactToDelete] = useState<null | ContactI>(null);
@@ -37,11 +42,36 @@ function MobileHome(props: any) {
     <Box>
       <VStack spacing={4} pt={5} pb={5} align="stretch">
         <Center>
-          <Input width={{ base: '70%' }}
+          {/* <Input width={{ base: '70%' }}
             onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
             placeholder='Search contacts'
             size='md' variant='filled'
-          />
+          /> */}
+          <InputGroup width='auto'>
+              <InputLeftElement
+                pointerEvents='none'
+                color='gray.300'
+                fontSize='0.9em'
+                children={<SearchIcon color='gray.500' />}
+              />
+              <Input
+                onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
+                placeholder='Search Contacts'
+                variant='filled'
+                size='md'
+              />
+
+              {showClearIcon &&
+                <InputRightElement
+                  onClick={() => clearSearchTerm()}
+                  children={
+                    <MdHighlightOff
+                      color='green.500'
+                    />}
+                />}
+
+
+            </InputGroup>
         </Center>
       </VStack>
 
@@ -137,7 +167,7 @@ function MobileHome(props: any) {
         )}
       </Skeleton>
 
-      <Button colorScheme="teal" onClick={() => setShowCreateForm(true)}>
+      <Button mt={6} colorScheme="teal" onClick={() => setShowCreateForm(true)}>
         Add a New Contact
       </Button>
     </Box>

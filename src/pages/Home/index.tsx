@@ -17,11 +17,16 @@ import {
   Text,
   Skeleton,
   Input,
-  Stack
+  Stack,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement
 } from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons'
 import axios from 'axios';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
+import { MdHighlightOff } from "react-icons/md";
 import MobileHome from './MobileHome';
 import DeleteAlertModal from './DeleteContact';
 import ViewAContact from './ViewContact';
@@ -37,6 +42,8 @@ function Home() {
   const [contactToDelete, setContactToDelete] = useState<null | ContactI>(null);
   const [selectedContactId, setSelectedContactId] = useState<null | string>(null);
   const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
+  const [showClearIcon, setShowClearIcon] = useState<boolean>(false);
+
   const toast = useToast();
 
   const [isBigScreen] = useMediaQuery('(min-width: 768px)');
@@ -72,9 +79,17 @@ function Home() {
     }
   };
 
+  const clearSearchTerm = () => {
+    setShowClearIcon(false)
+    setSearchTerm('')
+    getContacts('');
+  }
 
-  const handleOnChange = (event: any) => setSearchTerm(event.target.value);
 
+  const handleOnChange = (event: any) => {
+    setSearchTerm(event.target.value);
+    setShowClearIcon(true)
+  }
 
   if (isBigScreen) {
     return (
@@ -91,12 +106,34 @@ function Home() {
           </Flex>
 
           <Flex justifyContent="" mt={4}>
-            <Input width='auto' onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
-              placeholder='Search Contacts'
-              variant='filled'
-              size='md'
-            />
+
+            <InputGroup width='auto'>
+              <InputLeftElement
+                pointerEvents='none'
+                color='gray.300'
+                fontSize='0.9em'
+                children={<SearchIcon color='gray.500' />}
+              />
+              <Input
+                onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
+                placeholder='Search Contacts'
+                variant='filled'
+                size='md'
+              />
+
+              {showClearIcon &&
+                <InputRightElement
+                  onClick={() => clearSearchTerm()}
+                  children={
+                    <MdHighlightOff
+                      color='green.500'
+                    />}
+                />}
+
+
+            </InputGroup>
           </Flex>
+
         </Box>
         <Skeleton size="20" isLoaded={!isLoadingContacts}>
           <Box mx={12} mt={4}>
@@ -191,7 +228,7 @@ function Home() {
     );
   }
   return (
-    <MobileHome contacts={contacts} isLoaded={!isLoadingContacts} handleOnChange={handleOnChange} handleKeyDown={handleKeyDown} getContacts={getContacts} />
+    <MobileHome contacts={contacts} showClearIcon={showClearIcon} clearSearchTerm={clearSearchTerm} isLoaded={!isLoadingContacts} handleOnChange={handleOnChange} handleKeyDown={handleKeyDown} getContacts={getContacts} />
   );
 }
 

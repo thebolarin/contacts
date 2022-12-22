@@ -28,6 +28,7 @@ function CustomForm(props: any) {
         <Input
           id="firstName"
           type="text"
+          placeholder='Jane'
           onChange={e => handleValueChange({ firstName: e.target.value })}
           value={contact.firstName}
         />
@@ -37,6 +38,7 @@ function CustomForm(props: any) {
         <Input
           id="lastName"
           type="text"
+          placeholder='Doe'
           onChange={e => handleValueChange({ lastName: e.target.value })}
           value={contact.lastName}
         />
@@ -46,6 +48,7 @@ function CustomForm(props: any) {
         <Input
           id="email"
           type="email"
+          placeholder='test@test.com'
           onChange={e => handleValueChange({ email: e.target.value })}
           value={contact.email}
         />
@@ -55,6 +58,7 @@ function CustomForm(props: any) {
         <Input
           id="phoneNumber"
           type="phone"
+          placeholder='+23412345678'
           onChange={e => handleValueChange({ phoneNumber: e.target.value })}
           value={contact.phoneNumber}
         />
