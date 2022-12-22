@@ -46,7 +46,7 @@ function Home() {
     try {
       setIsLoadingContacts(true);
       let url = `${baseURL}/contact`;
-      if (searchTerm && searchTerm !== '')  url = `${baseURL}/contact?searchTerm=${searchTerm}`;
+      if (searchTerm && searchTerm !== '') url = `${baseURL}/contact?searchTerm=${searchTerm}`;
       const response = await axios.get(url);
       const contacts = response.data.data.contacts;
 
@@ -92,8 +92,7 @@ function Home() {
 
           <Flex justifyContent="" mt={4}>
             <Input width='auto' onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
-              placeholder='search contacts'
-              _placeholder={{ color: 'inherit' }}
+              placeholder='Search Contacts'
               variant='filled'
               size='md'
             />
@@ -102,9 +101,7 @@ function Home() {
         <Skeleton size="20" isLoaded={!isLoadingContacts}>
           <Box mx={12} mt={4}>
             <TableContainer>
-
-
-              {contacts.length > 0 && (
+              {contacts.length > 0 ?
                 <Table variant="striped" colorScheme="teal">
                   <TableCaption placement="top">
                     <Text fontSize="3xl">{contacts.length} Contact(s) </Text>
@@ -128,10 +125,7 @@ function Home() {
                             size="sm"
                             variant="link"
                             icon={
-                              <GrEdit
-                                onClick={() => {
-                                  setContact(contact);
-                                }}
+                              <GrEdit onClick={() => setContact(contact)}
                               />
                             }
                           />
@@ -142,9 +136,7 @@ function Home() {
                             aria-label="Delete Contact"
                             icon={
                               <RiDeleteBin6Line
-                                onClick={() => {
-                                  setContactToDelete(contact);
-                                }}
+                                onClick={() => setContactToDelete(contact)}
                               />
                             }
                           />
@@ -152,9 +144,7 @@ function Home() {
                         <Td>
                           <Button
                             variant="link"
-                            onClick={() => {
-                              setSelectedContactId(contact._id);
-                            }}
+                            onClick={() => setSelectedContactId(contact._id)}
                           >
                             Details
                           </Button>
@@ -162,14 +152,13 @@ function Home() {
                       </Tr>
                     ))}
                   </Tbody>
-                </Table>
-              )}
+                </Table> :
+                <Text pt={40} color="gray.500" fontSize="3xl">No contact found. Add a new contact to get started.</Text>
+              }
             </TableContainer>
             <EditContact
               isOpen={contact}
-              onClose={() => {
-                setContact(null);
-              }}
+              onClose={() => setContact(null)}
               fullContacts={contacts}
               contact={contact}
               setContact={setContact}
@@ -177,27 +166,21 @@ function Home() {
             <CreateContact
               setContact={setContacts}
               isOpen={showCreateForm}
-              onClose={() => {
-                setShowCreateForm(false);
-              }}
+              onClose={() => setShowCreateForm(false)}
               contact={contacts}
             />
             <DeleteAlertModal
               setContact={setContacts}
               contact={contacts}
               isOpen={contactToDelete}
-              onClose={() => {
-                setContactToDelete(null);
-              }}
+              onClose={() => setContactToDelete(null)}
               contactToDelete={contactToDelete}
             />
 
             {selectedContactId !== null && (
               <ViewAContact
                 isOpen={selectedContactId}
-                onClose={() => {
-                  setSelectedContactId(null);
-                }}
+                onClose={() => setSelectedContactId(null)}
                 contactId={selectedContactId}
               />
             )}
@@ -208,9 +191,7 @@ function Home() {
     );
   }
   return (
-    <Skeleton size="20" isLoaded={!isLoadingContacts}>
-      <MobileHome contacts={contacts} handleOnChange={handleOnChange} handleKeyDown={handleKeyDown} getContacts={getContacts} />
-    </Skeleton>
+    <MobileHome contacts={contacts} isLoaded={!isLoadingContacts} handleOnChange={handleOnChange} handleKeyDown={handleKeyDown} getContacts={getContacts} />
   );
 }
 
