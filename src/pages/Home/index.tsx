@@ -53,7 +53,7 @@ function Home() {
     try {
       setIsLoadingContacts(true);
       let url = `${baseURL}/contact`;
-      if (searchTerm && searchTerm !== '') url = `${baseURL}/contact?searchTerm=${searchTerm}`;
+      if (searchTerm && searchTerm !== '') url = `${url}?searchTerm=${searchTerm}`;
       const response = await axios.get(url);
       const contacts = response.data.data.contacts;
 
@@ -74,17 +74,14 @@ function Home() {
   useEffect(() => { getContacts('') }, [getContacts]);
 
   const handleKeyDown = (event: any) => {
-    if (event.key === 'Enter') {
-      getContacts(searchTerm);
-    }
+    if (event.key === 'Enter') getContacts(searchTerm)
   };
 
   const clearSearchTerm = () => {
-    setShowClearIcon(false)
     setSearchTerm('')
+    setShowClearIcon(false)
     getContacts('');
   }
-
 
   const handleOnChange = (event: any) => {
     setSearchTerm(event.target.value);
@@ -106,7 +103,6 @@ function Home() {
           </Flex>
 
           <Flex justifyContent="" mt={4}>
-
             <InputGroup width='auto'>
               <InputLeftElement
                 pointerEvents='none'
@@ -116,7 +112,7 @@ function Home() {
               />
               <Input
                 onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
-                placeholder='Search Contacts'
+                placeholder='Search'
                 variant='filled'
                 size='md'
               />
@@ -124,10 +120,7 @@ function Home() {
               {showClearIcon &&
                 <InputRightElement
                   onClick={() => clearSearchTerm()}
-                  children={
-                    <MdHighlightOff
-                      color='green.500'
-                    />}
+                  children={<MdHighlightOff />}
                 />}
 
 
@@ -228,7 +221,14 @@ function Home() {
     );
   }
   return (
-    <MobileHome contacts={contacts} showClearIcon={showClearIcon} clearSearchTerm={clearSearchTerm} isLoaded={!isLoadingContacts} handleOnChange={handleOnChange} handleKeyDown={handleKeyDown} getContacts={getContacts} />
+    <MobileHome contacts={contacts}
+      showClearIcon={showClearIcon}
+      clearSearchTerm={clearSearchTerm}
+      isLoaded={!isLoadingContacts}
+      handleOnChange={handleOnChange}
+      handleKeyDown={handleKeyDown}
+      getContacts={getContacts}
+      searchTerm={searchTerm} />
   );
 }
 

@@ -48,30 +48,24 @@ function MobileHome(props: any) {
             size='md' variant='filled'
           /> */}
           <InputGroup width='auto'>
-              <InputLeftElement
-                pointerEvents='none'
-                color='gray.300'
-                fontSize='0.9em'
-                children={<SearchIcon color='gray.500' />}
-              />
-              <Input
-                onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
-                placeholder='Search Contacts'
-                variant='filled'
-                size='md'
-              />
+            <InputLeftElement
+              pointerEvents='none'
+              color='gray.300'
+              fontSize='0.9em'
+              children={<SearchIcon color='gray.500' />}
+            />
+            <Input onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
+              placeholder='Search'
+              variant='filled'
+              size='md'
+            />
 
-              {showClearIcon &&
-                <InputRightElement
-                  onClick={() => clearSearchTerm('')}
-                  children={
-                    <MdHighlightOff
-                      color='green.500'
-                    />}
-                />}
-
-
-            </InputGroup>
+            {showClearIcon &&
+              <InputRightElement
+                onClick={() => clearSearchTerm()}
+                children={<MdHighlightOff color='gray.500' />}
+              />}
+          </InputGroup>
         </Center>
       </VStack>
 
