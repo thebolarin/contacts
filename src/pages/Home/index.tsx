@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import  React, { useEffect, useState, useCallback } from 'react';
 import {
   useMediaQuery,
   Table,
@@ -16,23 +16,18 @@ import {
   Box,
   Text,
   Skeleton,
-  Input,
-  Stack,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement
+  Stack
 } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons'
 import axios from 'axios';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
-import { MdHighlightOff } from "react-icons/md";
 import MobileHome from './MobileHome';
 import DeleteAlertModal from './DeleteContact';
 import ViewAContact from './ViewContact';
 import CreateContact from './CreateContact';
 import EditContact from './EditContact';
 import { ContactI } from '../../store/type';
+import SearchForm from '../../components/Form/SearchForm';
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -91,7 +86,6 @@ function Home() {
   if (isBigScreen) {
     return (
       <Stack padding={4} spacing={1}>
-
         <Box>
           <Flex justifyContent="flex-end">
             <Button onClick={() => setShowCreateForm(true)}
@@ -103,31 +97,16 @@ function Home() {
           </Flex>
 
           <Flex justifyContent="" mt={4}>
-            <InputGroup width='auto'>
-              <InputLeftElement
-                pointerEvents='none'
-                color='gray.300'
-                fontSize='0.9em'
-                children={<SearchIcon color='gray.500' />}
-              />
-              <Input
-                onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
-                placeholder='Search'
-                variant='filled'
-                size='md'
-              />
-
-              {showClearIcon &&
-                <InputRightElement
-                  onClick={() => clearSearchTerm()}
-                  children={<MdHighlightOff />}
-                />}
-
-
-            </InputGroup>
+            <SearchForm
+              showClearIcon={showClearIcon}
+              clearSearchTerm={clearSearchTerm}
+              handleOnChange={handleOnChange}
+              handleKeyDown={handleKeyDown}
+              searchTerm={searchTerm}
+            />
           </Flex>
-
         </Box>
+
         <Skeleton size="20" isLoaded={!isLoadingContacts}>
           <Box mx={12} mt={4}>
             <TableContainer>

@@ -7,22 +7,17 @@ import {
   HStack,
   Spacer,
   Button,
-  Input,
   Center,
   Skeleton,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement
 } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons'
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
-import { MdHighlightOff } from "react-icons/md";
 import ViewAContact from './ViewContact';
 import EditContact from './EditContact';
 import DeleteContact from './DeleteContact';
 import CreateContact from './CreateContact';
 import { ContactI } from '../../store/type';
+import SearchForm from '../../components/Form/SearchForm';
 
 function MobileHome(props: any) {
   const { handleOnChange, searchTerm, handleKeyDown, isLoaded, showClearIcon, clearSearchTerm } = props;
@@ -42,30 +37,13 @@ function MobileHome(props: any) {
     <Box>
       <VStack spacing={4} pt={5} pb={5} align="stretch">
         <Center>
-          {/* <Input width={{ base: '70%' }}
-            onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
-            placeholder='Search contacts'
-            size='md' variant='filled'
-          /> */}
-          <InputGroup width='auto'>
-            <InputLeftElement
-              pointerEvents='none'
-              color='gray.300'
-              fontSize='0.9em'
-              children={<SearchIcon color='gray.500' />}
-            />
-            <Input onChange={handleOnChange} value={searchTerm} onKeyDown={handleKeyDown}
-              placeholder='Search'
-              variant='filled'
-              size='md'
-            />
-
-            {showClearIcon &&
-              <InputRightElement
-                onClick={() => clearSearchTerm()}
-                children={<MdHighlightOff color='gray.500' />}
-              />}
-          </InputGroup>
+          <SearchForm
+            showClearIcon={showClearIcon}
+            clearSearchTerm={clearSearchTerm}
+            handleOnChange={handleOnChange}
+            handleKeyDown={handleKeyDown}
+            searchTerm={searchTerm}
+          />
         </Center>
       </VStack>
 
