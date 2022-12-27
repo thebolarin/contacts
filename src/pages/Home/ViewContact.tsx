@@ -2,10 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useToast, Box, Text, Skeleton, Flex, Divider } from '@chakra-ui/react';
 import axios from 'axios';
 import CustomModal from '../../components/Modal/CustomModal';
-import { ContactEditHistoryI, ContactI } from '../../store/type';
+import { IContactEditHistory, IContact } from '../../store/type';
 
-function ViewAContact(props:any) {
-  const [contact, setContact] = useState<any | ContactI>({});
+function ViewContact(props:any) {
+  const [contact, setContact] = useState<any | IContact>({});
   const [edits, setEdits] = useState([]);
   const [fetching, setFetching] = useState(false);
 
@@ -88,7 +88,7 @@ function ViewAContact(props:any) {
               >
                 Edit History
               </Text>
-              {edits.map((edit: ContactEditHistoryI) => {
+              {edits.map((edit: IContactEditHistory) => {
                 const createdAt = formatDate(edit.createdAt);
                 return (
                   <Box
@@ -120,4 +120,4 @@ function ViewAContact(props:any) {
   );
 }
 
-export default ViewAContact;
+export default ViewContact;

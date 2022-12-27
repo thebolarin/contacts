@@ -23,18 +23,18 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
 import MobileHome from './MobileHome';
 import DeleteAlertModal from './DeleteContact';
-import ViewAContact from './ViewContact';
+import ViewContact from './ViewContact';
 import CreateContact from './CreateContact';
 import EditContact from './EditContact';
-import { ContactI } from '../../store/type';
+import { IContact } from '../../store/type';
 import SearchForm from '../../components/Form/SearchForm';
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoadingContacts, setIsLoadingContacts] = useState(false);
-  const [contacts, setContacts] = useState([]);
-  const [contact, setContact] = useState<null | ContactI>(null);
-  const [contactToDelete, setContactToDelete] = useState<null | ContactI>(null);
+  const [contacts, setContacts] = useState<IContact[]>([]);
+  const [contact, setContact] = useState<null | IContact>(null);
+  const [contactToDelete, setContactToDelete] = useState<null | IContact>(null);
   const [selectedContactId, setSelectedContactId] = useState<null | string>(null);
   const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
   const [showClearIcon, setShowClearIcon] = useState<boolean>(false);
@@ -123,7 +123,7 @@ function Home() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {contacts.map((contact: ContactI) => (
+                    {contacts.map((contact: IContact) => (
                       <Tr key={contact._id}>
                         <Td>{`${contact.firstName}  ${contact.lastName}`}</Td>
                         <Td>{contact.email}</Td>
@@ -143,6 +143,7 @@ function Home() {
                             size="sm"
                             variant="link"
                             aria-label="Delete Contact"
+                            data-testid="deleteButton"
                             icon={
                               <RiDeleteBin6Line
                                 onClick={() => setContactToDelete(contact)}
@@ -187,7 +188,7 @@ function Home() {
             />
 
             {selectedContactId !== null && (
-              <ViewAContact
+              <ViewContact
                 isOpen={selectedContactId}
                 onClose={() => setSelectedContactId(null)}
                 contactId={selectedContactId}

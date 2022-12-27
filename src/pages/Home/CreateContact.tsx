@@ -3,14 +3,14 @@ import { Button, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import CustomModal from '../../components/Modal/CustomModal';
 import CustomForm from '../../components/Form/CustomForm';
-import { ContactI } from '../../store/type';
+import { IContact } from '../../store/type';
 
 function CreateContact(props:any) {
   const {isOpen, onClose, setContact} = props;
   const [creating, setCreating] = useState<boolean>(false);
   const toast = useToast();
 
-  const onSubmit = async(contact:ContactI) => {
+  const onSubmit = async(contact:IContact) => {
     const baseURL = process.env.REACT_APP_BASE_URL;
    
     try {
