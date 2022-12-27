@@ -1,4 +1,4 @@
-export interface ContactI {
+export interface IContact {
     _id: string,
     firstName: string,
     lastName: string,
@@ -7,7 +7,7 @@ export interface ContactI {
     createdAt: Date,
 }
 
-export interface ContactEditHistoryI {
+export interface IContactEditHistory {
     data: {
         firstName: string,
         lastName: string,
@@ -17,15 +17,3 @@ export interface ContactEditHistoryI {
     _id: string,
     createdAt: Date
 }
-
-export interface Props {
-    id: any,
-    selectedContact: any
-    onSubmit: any,
-    contact: any
-    isOpen: boolean,
-    onClose: any,
-    title: any
-    children: any, 
-    footerChildren: any
-  }

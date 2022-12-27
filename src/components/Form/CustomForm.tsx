@@ -22,13 +22,14 @@ function CustomForm(props: any) {
   const handleValueChange = (valueObject: any) => setContact(value => ({ ...value, ...valueObject }))
 
   return (
-    <form id={id} onSubmit={handleSubmit}>
+    <form id={id} data-testid="form" onSubmit={handleSubmit}>
       <FormControl isRequired>
         <FormLabel htmlFor="firstName">First Name</FormLabel>
         <Input
           id="firstName"
           type="text"
           placeholder='Jane'
+          data-testid="firstName"
           onChange={e => handleValueChange({ firstName: e.target.value })}
           value={contact.firstName}
         />
@@ -39,6 +40,7 @@ function CustomForm(props: any) {
           id="lastName"
           type="text"
           placeholder='Doe'
+          data-testid="lastName"
           onChange={e => handleValueChange({ lastName: e.target.value })}
           value={contact.lastName}
         />
@@ -49,6 +51,7 @@ function CustomForm(props: any) {
           id="email"
           type="email"
           placeholder='test@test.com'
+          data-testid="email"
           onChange={e => handleValueChange({ email: e.target.value })}
           value={contact.email}
         />
@@ -59,6 +62,7 @@ function CustomForm(props: any) {
           id="phoneNumber"
           type="phone"
           placeholder='+23412345678'
+          data-testid="phoneNumber"
           onChange={e => handleValueChange({ phoneNumber: e.target.value })}
           value={contact.phoneNumber}
         />
