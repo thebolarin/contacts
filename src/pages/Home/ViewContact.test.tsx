@@ -7,7 +7,7 @@ describe('<ViewContact />', () => {
     const div = document.createElement('div');
     ReactDOM.render(<ViewContact />, div);
     document.body.appendChild(div);
-    screen.debug();
+    // screen.debug();
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 });

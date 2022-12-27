@@ -8,7 +8,7 @@ describe('<DeleteContact />', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DeleteContact />, div);
     document.body.appendChild(div);
-    screen.debug();
+    // screen.debug();
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 });

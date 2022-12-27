@@ -7,7 +7,7 @@ describe('<EditContact />', () => {
     const div = document.createElement('div');
     ReactDOM.render(<EditContact />, div);
     document.body.appendChild(div);
-    screen.debug();
+    // screen.debug();
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 });
