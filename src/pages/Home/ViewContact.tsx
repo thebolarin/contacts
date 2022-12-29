@@ -30,7 +30,6 @@ function ViewAContact(props:any) {
         position: 'top',
       });
       setFetching(false);
-      console.error(error);
     }
   }, [props.contactId, toast]);
 
