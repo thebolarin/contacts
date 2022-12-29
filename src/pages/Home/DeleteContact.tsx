@@ -10,10 +10,10 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
-import { ContactI } from '../../store/type';
+import { IContact } from '../../store/type';
 
 function DeleteContact(props:any) {
-  const [contactToDelete, setContactToDelete] = useState<any | ContactI>({}); 
+  const [contactToDelete, setContactToDelete] = useState<any | IContact>({}); 
   const cancelRef = React.useRef(null);
   const [deleting, setDeleting] = useState(false);
   const toast = useToast();

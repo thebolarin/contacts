@@ -12,18 +12,18 @@ import {
 } from '@chakra-ui/react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
-import ViewAContact from './ViewContact';
+import ViewContact from './ViewContact';
 import EditContact from './EditContact';
 import DeleteContact from './DeleteContact';
 import CreateContact from './CreateContact';
-import { ContactI } from '../../store/type';
+import { IContact } from '../../store/type';
 import SearchForm from '../../components/Form/SearchForm';
 
 function MobileHome(props: any) {
   const { handleOnChange, searchTerm, handleKeyDown, isLoaded, showClearIcon, clearSearchTerm } = props;
-  const [contacts, setContacts] = useState([]);
-  const [contact, setContact] = useState<null | ContactI>(null);
-  const [contactToDelete, setContactToDelete] = useState<null | ContactI>(null);
+  const [contacts, setContacts] = useState<IContact[]>([]);
+  const [contact, setContact] = useState<null | IContact>(null);
+  const [contactToDelete, setContactToDelete] = useState<null | IContact>(null);
   const [selectedContactId, setSelectedContactId] = useState<null | string>(null);
   const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
 
@@ -54,7 +54,7 @@ function MobileHome(props: any) {
             <Text fontSize="xl" color="gray.500">
               {contacts.length} Contact(s)
             </Text>
-            {contacts.map((contact: ContactI) => (
+            {contacts.map((contact: IContact) => (
               <Box
                 shadow="md"
                 w="100%"
@@ -129,7 +129,7 @@ function MobileHome(props: any) {
           contactToDelete={contactToDelete}
         />
         {selectedContactId !== null && (
-          <ViewAContact
+          <ViewContact
             isOpen={selectedContactId}
             onClose={() => {
               setSelectedContactId(null);

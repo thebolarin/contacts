@@ -9,7 +9,11 @@ import {
 // import { Logo } from "./Logo"
 import Home from "./pages/Home"
 
-export const App = () => (
+interface HeaderProps {
+  children?: any;
+}
+
+export const App : React.FC<React.PropsWithChildren<HeaderProps>> = ({ children }) => (
   <ChakraProvider theme={theme}>
   <Box textAlign="center" px="5" fontSize="md">
     <Grid minH="100vh" p={3}>

@@ -3,14 +3,14 @@ import { Button, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import CustomModal from '../../components/Modal/CustomModal';
 import CustomForm from '../../components/Form/CustomForm';
-import { ContactI } from '../../store/type';
+import { IContact } from '../../store/type';
 
 function EditContact(props:any) {
-  const [contact, setContact] = useState<any | ContactI>({});
+  const [contact, setContact] = useState<any | IContact>({});
   const [editing, setEditing] = useState(false);
   const toast = useToast();
 
-  const onSubmit = async( editedContact: ContactI) => {
+  const onSubmit = async( editedContact: IContact) => {
     const baseURL = process.env.REACT_APP_BASE_URL;
     try {
       setEditing(true);
