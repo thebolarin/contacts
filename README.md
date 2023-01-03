@@ -1,4 +1,4 @@
-# Contacts App
+# Simple Contacts App
 
 > An app that takes record of contacts and their edit history.
 
