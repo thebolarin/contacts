@@ -1,3 +1,7 @@
+# Contacts App
+
+> An app that takes record of contacts and their edit history.
+
 This project was bootstrapped with
 [Create React App](https://github.com/facebook/create-react-app).
 
